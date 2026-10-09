@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Client management | Deltessa Data</title>
+<link rel="icon" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="top">
+  <img src="images/logo.png" alt="Deltessa Data">
+  <nav aria-label="Admin">
+    <button data-v="clients">Clients</button><button data-v="jobs">Jobs</button>
+    <button data-v="logs">Client logs</button><button data-v="messages" id="tm">Messages</button>
+  </nav>
+  <small id="who"></small><button id="out">Sign out</button>
+</header>
+<main id="app"><p class="empty">Loading...</p></main>
+<dialog id="dlg"></dialog>
+<div id="toast" role="alert" hidden></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body></html>

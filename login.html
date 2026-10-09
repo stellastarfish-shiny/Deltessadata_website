@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Admin login | Deltessa Data</title>
+<link rel="icon" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css">
+</head>
+<body class="login">
+<form id="lf" class="box login-card">
+  <img src="images/logo.png" alt="Deltessa Data">
+  <h1>Admin login</h1>
+  <label>Email<input name="email" type="email" required autocomplete="username"></label>
+  <label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+  <button class="btn btn-green" type="submit">Sign in</button>
+  <p id="msg" role="alert"></p>
+  <a href="index.html">Back to website</a>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script>
+const C=APP_CONFIG,sb=supabase.createClient(C.SUPABASE_URL,C.SUPABASE_ANON_KEY),msg=document.getElementById('msg');
+sb.auth.getSession().then(({data})=>{if(data.session)location.replace('admin.html')});
+document.getElementById('lf').onsubmit=async e=>{
+  e.preventDefault();msg.textContent='Signing in...';
+  const {error}=await sb.auth.signInWithPassword({email:e.target.email.value,password:e.target.password.value});
+  if(error)msg.textContent=error.message;else location.replace('admin.html');
+};
+</script>
+</body></html>
